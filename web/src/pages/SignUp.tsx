@@ -1,4 +1,4 @@
-import { Eye, EyeSlash, Spinner } from "phosphor-react";
+import { Eye, EyeSlash } from "phosphor-react";
 import { ToastContainer, toast } from "react-toastify";
 import { api } from "../lib/axios";
 import { FormEvent, useState } from "react";
@@ -15,7 +15,7 @@ export function SignUp() {
 
     const formData = new FormData(event.currentTarget);
 
-    api
+    await api
       .post("/auth/register", {
         name: formData.get("name"),
         email: formData.get("email"),
@@ -69,7 +69,7 @@ export function SignUp() {
           <input
             placeholder="Valor"
             className="peer px-3 py-2 placeholder:text-transparent rounded-md border-2 outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
-            type={isVisible ? "password" : "text"}
+            type={!isVisible ? "password" : "text"}
             name="password"
           />
           <label className="absolute -top-[0.70rem] peer-focus:-top-[0.70rem] text-zinc-500 peer-placeholder-shown:text-base peer-placeholder-shown:bg-transparent peer-focus:bg-white bg-white peer-focus:text-green-600 peer-placeholder-shown:top-[0.6rem] text-sm peer-focus:text-sm left-2 px-2 transition-all">
@@ -80,7 +80,7 @@ export function SignUp() {
             onClick={() => setIsVisible(!isVisible)}
             className="absolute right-4 top-2"
           >
-            {isVisible ? (
+            {!isVisible ? (
               <Eye size={28} weight="thin" />
             ) : (
               <EyeSlash size={28} weight="thin" />
@@ -92,7 +92,7 @@ export function SignUp() {
           type="submit"
           className="relative py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 transition-colors"
         >
-          {isLoading ? <Spinner /> : "Entrar"}
+          {isLoading ? "Entrando..." : "Entrar"}
         </button>
       </form>
     </div>

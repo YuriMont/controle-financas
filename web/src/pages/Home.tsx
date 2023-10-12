@@ -14,7 +14,7 @@ export function Home() {
   const token = Cookies.get("token");
 
   async function getSummary(){
-    api.get("/user/account/summary", {
+    await api.get("/user/account/summary", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -24,7 +24,7 @@ export function Home() {
   }
 
   async function getTransactions(){
-    api
+    await api
       .get("/user/account", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ export function Home() {
   }
 
   async function createTransaction(description: string, value: number, type: string){
-    api.post(
+    await api.post(
       "/user/account",
       {
         description,
@@ -54,7 +54,7 @@ export function Home() {
   }
 
   async function deleteTransaction(transactionId: number) {
-    api.delete(`/user/account/transaction/${transactionId}`, {
+    await api.delete(`/user/account/transaction/${transactionId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -75,8 +75,8 @@ export function Home() {
     <main className="py-16 px-48 max-[640px]:p-8 max-[640px]:mb-16  max-[640px]:gap-8 flex flex-col w-screen min-h-screen items-center gap-6">
       <h1 className="text-center font-bold text-4xl">Sistema de finanças</h1>
       <Summary balance={summaryItems?.balance} costs={summaryItems?.costs} incomes={summaryItems?.incomes}/>
-      <NewFinanceForm createTransactions={createTransaction} getSummary={getSummary} getTransactions={getTransactions}/>
-      <FinancesTable transactions={transactions} deleteTransaction={deleteTransaction} getTransaction={getTransactions}/>
+      <NewFinanceForm createTransactions={createTransaction}/>
+      <FinancesTable transactions={transactions} deleteTransaction={deleteTransaction} />
     </main>
   );
 }

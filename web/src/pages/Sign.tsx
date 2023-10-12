@@ -4,7 +4,6 @@ import { api } from "../lib/axios";
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Spinner } from "../components/Spinner";
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Sign() {
@@ -18,7 +17,7 @@ export function Sign() {
 
     const formData = new FormData(event.currentTarget);
 
-    api
+    await api
       .post("/auth/login", {
         email: formData.get("email"),
         password: formData.get("password"),
@@ -66,7 +65,7 @@ export function Sign() {
           <input
             placeholder="Valor"
             className="peer px-3 py-2 placeholder:text-transparent rounded-md border-2 outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent transition-all"
-            type={isVisible ? "password" : "text"}
+            type={!isVisible ? "password" : "text"}
             name="password"
           />
           <label
@@ -90,10 +89,10 @@ export function Sign() {
         <span className="text-sm font-light text-center">Não tem conta? <Link className="text-blue-600 cursor-pointer" to="/signup">crie sua conta</Link></span>
         <button
           type="submit"
-          className="relative py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 transition-colors"
+          className="relative flex items-center justify-center py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 transition-colors"
         >
           {
-            isLoading ? <Spinner /> : "Entrar"
+            isLoading ? "Entrando...." : "Entrar"
           }
         </button>
       </form>

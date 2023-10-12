@@ -1,26 +1,19 @@
-import { FormEvent, useState } from "react";
-import { Spinner } from "./Spinner";
+import { FormEvent } from "react";
 
 interface NewFinanceFormProps{
   createTransactions: (description: string, value: number, type: string) => void;
-  getTransactions: () => void;
-  getSummary: () => void; 
 }
 
-export function NewFinanceForm({createTransactions, getSummary, getTransactions}:NewFinanceFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
+export function NewFinanceForm({createTransactions}:NewFinanceFormProps) {
 
   function handleSubmitTransactionForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setIsLoading(true);
 
     const formData = new FormData(event.currentTarget);
 
     createTransactions(String(formData.get('description')), Number(formData.get('value')), String(formData.get('type')));
-    getSummary();
-    getTransactions();
+
     event.currentTarget.reset()
-    setIsLoading(false);
   }
 
   return (
@@ -67,9 +60,7 @@ export function NewFinanceForm({createTransactions, getSummary, getTransactions}
         </span>
       </div>
       <button className="text-white bg-green-600 rounded-md px-3 py-2 text-lg font-bold">
-        {
-            isLoading ? <Spinner /> : "Adicionar"
-          }
+        Adicionar
       </button>
     </form>
   );

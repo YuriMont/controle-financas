@@ -1,7 +1,5 @@
 import { TrashSimple, TrendDown, TrendUp } from "phosphor-react";
 import { EmptyTransactions } from "./EmptyTransactions";
-import { useState } from "react";
-import { Spinner } from "./Spinner";
 
 export type Transactions = {
   id: number;
@@ -13,21 +11,16 @@ export type Transactions = {
 interface TransactionsTableProps{
   transactions: Transactions | null;
   deleteTransaction: (id:number) => void;
-  getTransaction: () => void;
 }
 
-export function FinancesTable({ transactions, deleteTransaction, getTransaction}: TransactionsTableProps) {
-  const [isLoading, setIsLoading] = useState(false);
+export function FinancesTable({ transactions, deleteTransaction }: TransactionsTableProps) {
 
   if(transactions?.length == 0){
     return (<EmptyTransactions />);
   }
 
   function handleDeleteTransaction(id: number){
-    setIsLoading(true);
     deleteTransaction(id);
-    getTransaction()
-    setIsLoading(false);
   }
 
   return (
@@ -54,7 +47,7 @@ export function FinancesTable({ transactions, deleteTransaction, getTransaction}
             onClick={() => handleDeleteTransaction(item.id)}
             className="p-2 cursor-pointer hover:opacity-80 transition-colors"
           >
-            {isLoading ? <Spinner /> : <TrashSimple size={24} weight="fill" />}
+            <TrashSimple size={24} weight="fill" />
           </td>
         </tr>
       ))}
