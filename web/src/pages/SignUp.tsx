@@ -90,7 +90,8 @@ export function SignUp() {
         <span className="text-sm font-light text-center">Já tem uma conta? <Link className="text-blue-600 cursor-pointer" to="/sign">voltar</Link></span>
         <button
           type="submit"
-          className="relative py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 transition-colors"
+          disabled={isLoading}
+          className="relative py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 transition-colors disabled:bg-green-700 disabled:cursor-wait"
         >
           {isLoading ? "Entrando..." : "Entrar"}
         </button>

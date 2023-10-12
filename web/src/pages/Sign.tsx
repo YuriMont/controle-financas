@@ -88,8 +88,9 @@ export function Sign() {
         </div>
         <span className="text-sm font-light text-center">Não tem conta? <Link className="text-blue-600 cursor-pointer" to="/signup">crie sua conta</Link></span>
         <button
+          disabled={isLoading}
           type="submit"
-          className="relative flex items-center justify-center py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 transition-colors"
+          className="relative flex items-center justify-center py-2 px-3 text-lg font-bold text-white rounded-md shadow-md bg-green-500 hover:bg-green-600 disabled:bg-green-700 disabled:cursor-wait transition-colors"
         >
           {
             isLoading ? "Entrando...." : "Entrar"

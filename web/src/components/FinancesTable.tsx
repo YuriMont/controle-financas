@@ -24,28 +24,28 @@ export function FinancesTable({ transactions, deleteTransaction }: TransactionsT
   }
 
   return (
-    <table className="w-full shadow-md bg-white rounded-md">
+    <table className="w-full shadow-md bg-white rounded-md text-lg">
       <tr className="bg-zinc-300">
-        <th className="text-left px-3 py-2 rounded-tl-md">Descrição</th>
-        <th className="px-3 py-2">Valor</th>
-        <th className="px-3 py-2">Tipo</th>
-        <th className="py-2 rounded-tr-md"></th>
+        <th className="text-left py-4 px-6 rounded-tl-md">Descrição</th>
+        <th className="py-4 px-6">Valor</th>
+        <th className="py-4 px-6">Tipo</th>
+        <th className="rounded-tr-md"></th>
       </tr>
 
       {transactions?.map((item) => (
-        <tr className="text-center" key={item.id}>
-          <td className="text-left px-3 py-2">{item.description}</td>
-          <td className="px-3 py-2">{item.value}</td>
+        <tr className="text-center border-b hover:bg-green-100 transition-colors" key={item.id}>
+          <td className="text-left px-6 py-4">{item.description}</td>
+          <td className="px-6 py-4">{item.value}</td>
           <td
-            className={`w-full flex justify-center py-2 ${
+            className={`w-full flex justify-center py-4 ${
               item.type ? "text-green-500" : "text-red-500"
             }`}
           >
-            {item.type ? <TrendUp size={24} /> : <TrendDown size={24} />}
+            {item.type ? <TrendUp size={24}  weight="bold" /> : <TrendDown size={24}  weight="bold"/>}
           </td>
           <td
             onClick={() => handleDeleteTransaction(item.id)}
-            className="p-2 cursor-pointer hover:opacity-80 transition-colors"
+            className="p-4 cursor-pointer hover:opacity-80 transition-colors"
           >
             <TrashSimple size={24} weight="fill" />
           </td>
