@@ -29,3 +29,18 @@ Este projeto é uma aplicação de controle financeiro fullstack, projetada para
 * Consulta de Saldo: Os usuários podem verificar seu saldo atual com base nas transações registradas.
 
 * Sistema de registro e de login
+
+## Como executar
+
+```
+# clone o repositório
+git clone https://github.com/YuriMont/controle-financas.git
+
+# entre na pasta controle-financas/web e execute o comando abaixo
+npm run dev
+
+# entre na pasta controle/fincacas/server e execute o comando abaixo
+npm run dev
+
+
+```
